@@ -14,5 +14,5 @@ var showModel = mongoose.Schema({
 
 });
 
-// create the module and expose it to the app
+// create the model and expose it to the app
 module.exports = mongoose.Model('Show', showSchema);
