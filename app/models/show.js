@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 // define schema for show model
-var showModel = mongoose.Schema({
+var showSchema = mongoose.Schema({
 
     name: String,
     date: {
@@ -15,4 +15,4 @@ var showModel = mongoose.Schema({
 });
 
 // create the model and expose it to the app
-module.exports = mongoose.Model('Show', showSchema);
+module.exports = mongoose.model('Show', showSchema);

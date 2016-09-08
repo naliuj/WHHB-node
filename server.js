@@ -42,6 +42,7 @@ app.use(flash());
 require('./app/routes/index')(app, passport);
 require('./app/routes/login')(app, passport);
 require('./app/routes/users')(app, passport);
+require('./app/routes/shows')(app, passport);
 
 // LAUNCH
 app.listen(port);
