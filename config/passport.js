@@ -34,6 +34,8 @@ module.exports = function(passport) {
     },
     function(req, username, password, done) {
 
+        // asynchronous
+        // User.findOne won't fire unless data is sent back
         process.nextTick(function() {
 
             // check to see if the user already exists
@@ -44,7 +46,8 @@ module.exports = function(passport) {
 
                 // check to see if a user with the username already exists
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+
                 } else {
 
                     // if the user doesn't exist, create the user
@@ -53,6 +56,7 @@ module.exports = function(passport) {
                     // set the user's credentials
                     newUser.local.username = username;
                     newUser.local.password = newUser.generateHash(password);
+                    newUser.local.role = 'standard';
 
                     // save the user
                     newUser.save(function(err) {
@@ -61,7 +65,7 @@ module.exports = function(passport) {
                         return done(null, newUser);
                     });
 
-                };
+                }
             });
 
         });
