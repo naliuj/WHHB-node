@@ -45,6 +45,9 @@ require('./app/routes/login')(app, passport);
 require('./app/routes/users')(app, passport);
 require('./app/routes/shows')(app, passport);
 
+// API ROUTES
+require('./app/routes/api/shows')(app, passport);
+
 // LAUNCH
 app.listen(port);
 console.log('Server running on port ' + port);

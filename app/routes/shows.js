@@ -6,9 +6,11 @@ var Show = require('../models/show');
 
 module.exports = function(app, passport) {
 
-    // GET shows
+    // =========================================================================
+    // GET shows ===============================================================
+    // =========================================================================
     app.get('/shows', isLoggedIn, function(req, res) {
-        // render shows.ejs
+        // render the shows.ejs template and pass the values to it
         res.render('shows.ejs', {
             req: req,
             page: 'shows',
@@ -16,18 +18,20 @@ module.exports = function(app, passport) {
         });
     });
 
-    // POST shows
+    // =========================================================================
+    // POST shows ==============================================================
+    // =========================================================================
     app.post('/shows', isLoggedIn, function(req, res) {
         // assign the form inputs to variables
-        var $name = req.body.name;
+        var $name = req.body.name.trim();
         var $day = req.body.day;
         var $start = req.body.start;
         var $stop = req.body.stop;
         var $hosts = [
-            req.body.mem1,
-            req.body.mem2,
-            req.body.mem3,
-            req.body.mem4
+            req.body.mem1.trim(),
+            req.body.mem2.trim(),
+            req.body.mem3.trim(),
+            req.body.mem4.trim()
         ];
         // look for a show that already has that time slot
         Show.findOne({ 'date.day': $day, 'date.start': $start}, function(err, doc) {

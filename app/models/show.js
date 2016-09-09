@@ -6,9 +6,9 @@ var showSchema = mongoose.Schema({
 
     name: String,
     date: {
-        day: String,
-        start: String,
-        stop: String
+        day: Number,
+        start: Number,
+        stop: Number
     },
     hosts: [String]
 
