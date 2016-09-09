@@ -14,6 +14,7 @@ var session = require('express-session');
 var configDB = require('./config/database.js');
 
 // CONNECT TO THE DATABASE
+mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url);
 
 // PASS PASSPORT FOR CONFIGURATION

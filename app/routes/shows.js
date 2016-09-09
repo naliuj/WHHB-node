@@ -11,7 +11,8 @@ module.exports = function(app, passport) {
         // render shows.ejs
         res.render('shows.ejs', {
             req: req,
-            page: 'shows'
+            page: 'shows',
+            message: req.flash('showMessage')
         });
     });
 
@@ -29,31 +30,31 @@ module.exports = function(app, passport) {
             req.body.mem4
         ];
         // look for a show that already has that time slot
-        Show.findOne({ 'day': $day, 'start': $start}, function(err, doc) {
+        Show.findOne({ 'date.day': $day, 'date.start': $start}, function(err, doc) {
             // if the time slot is free, create a show there
             if (doc == null) {
                 // create the new show
                 var newShow = new Show();
                 // assign the variables to the new show
                 newShow.name = $name;
-                newShow.day = $day;
-                newShow.start = $start;
-                newShow.stop = $stop;
+                newShow.date.day = $day;
+                newShow.date.start = $start;
+                newShow.date.stop = $stop;
                 newShow.hosts = $hosts;
                 // save the new show
                 newShow.save(function(err) {
                     if (err) {
                         // if there's an error, log it to the console and flash a message
                         console.error(err);
-                        req.flash('addShow', 'Something went wrong adding the show. Try again later.');
+                        req.flash('showMessage', 'Something went wrong adding the show. Try again later.');
                     } else {
                         // if everything went as planned, flash a message
-                        req.flash('addShow', 'Successfully added the show to the database!');
+                        req.flash('showMessage', 'Successfully added the show to the database!');
                     };
                 });
             // if the time slot is already taken, flash a message
             } else {
-                req.flash('addShow', 'That time slot is already taken.');
+                req.flash('showMessage', 'That time slot is already taken.');
             };
             // redirect to /shows
             res.redirect('/shows');
