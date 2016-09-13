@@ -50,20 +50,30 @@ module.exports = function(passport) {
 
                 } else {
 
-                    // if the user doesn't exist, create the user
-                    var newUser = new User();
+                    // make sure that the password is at least 6 characters long
+                    // this ensures that users cannot have incredibly weak passwords
+                    if (password.length > 5) {
 
-                    // set the user's credentials
-                    newUser.local.username = username;
-                    newUser.local.password = newUser.generateHash(password);
-                    newUser.local.role = 'standard';
+                        // if the user doesn't exist, create the user
+                        var newUser = new User();
 
-                    // save the user
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, newUser);
-                    });
+                        // set the user's credentials
+                        newUser.local.username = username;
+                        newUser.local.password = newUser.generateHash(password);
+                        newUser.local.role = 'standard';
+
+                        // save the user
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+
+                    } else {
+
+                        return done(null, false, req.flash('signupMessage', 'Please choose a password of at least 6 characters.'));
+
+                    }
 
                 }
             });
