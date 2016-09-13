@@ -1,7 +1,10 @@
+// middleware to verify that the user has a role of at least admin
+var isAdmin = require("./middleware/isAdmin");
+
 module.exports = function(app, passport) {
 
     // GET users
-    app.get('/users', function(req, res) {
+    app.get('/users', isAdmin, function(req, res) {
         res.render('users.ejs', {
             req: req,
             page: 'users',
@@ -10,7 +13,7 @@ module.exports = function(app, passport) {
     });
 
     // POST register
-    app.post('/register', passport.authenticate('local-signup', {
+    app.post('/register', isAdmin, passport.authenticate('local-signup', {
         successRedirect: '/users',
         failureRedirect: '/users',
         failureFlash: true

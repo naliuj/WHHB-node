@@ -8,9 +8,9 @@
                 <a href="/"><span class="glyphicon glyphicon-home"</span></a></li>
             <li class=<% if (page == 'shows') { %>"active"<% } else { %>""<% }; %>>
                 <a href="/shows">Shows</a></li>
-            <% if (req.user.local.role == ('admin' || 'dev')) { %>
+            <% if (req.user.local.role > 1) { %>
                 <li class=<% if (page == 'users') { %>"active"<% } else { %>""<% }; %>>
-                    <a href="/">Users</a></li>
+                    <a href="/users">Users</a></li>
             <% } %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
