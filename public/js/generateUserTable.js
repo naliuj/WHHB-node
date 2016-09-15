@@ -18,16 +18,18 @@ function generateTable() {
         // for each JSON object that .getJSON finds
         $.each(data, function(i, user) {
 
-            // create a new row with the information for each user
-            var newRow = "<tr><td>" + user.local.username + "</td>\
-                              <td>" + roles[user.local.role] + "</td>\
-                              <td>" + "<button onclick=\"(delUser('" + user._id + "'))\" class='btn btn-danger btn-sm'>\
-                                       <span class='glyphicon glyphicon-trash'></span>\
-                                       </button></tr>"
+            if (user.local.role != 2) {
 
-            // append the HTML for the new row to the table
-            table += newRow;
+                // create a new row with the information for each user
+                var newRow = "<tr><td>" + user.local.username + "</td>\
+                                  <td>" + roles[user.local.role] + "</td>\
+                                  <td>" + "<button onclick=\"(delUser('" + user._id + "'))\" class='btn btn-danger btn-sm'>\
+                                           <span class='glyphicon glyphicon-trash'></span>\
+                                           </button></tr>"
 
+                // append the HTML for the new row to the table
+                table += newRow;
+            }
         });
         // append the closing tags to the end of the table
         table += "</tbody></table>";

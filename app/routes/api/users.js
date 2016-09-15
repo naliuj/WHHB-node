@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
     app.get('/api/users', isAdmin, function(req, res) {
         User
         // find users from User
-        .find()
+        .find({})
         // sort users by role and alphabetically
         .sort({'local.role': 'descending', 'local.username': 'ascending'})
         // execute function once all shows are found and sorted

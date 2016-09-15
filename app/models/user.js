@@ -27,5 +27,12 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+// override toJSON so that the password hash isn't returned
+userSchema.methods.toJSON = function() {
+    var obj = this.toObject()
+    delete obj.local.password
+    return obj
+}
+
 // create the model for users and expose to the app
 module.exports = mongoose.model('User', userSchema);
