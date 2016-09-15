@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
             // if there's an error, log it and flash a message
             if (err)
                 console.error(err);
-            // render shows.ejs and pass req, page
+            // render show JSON data
             res.json(shows);
         });
     });

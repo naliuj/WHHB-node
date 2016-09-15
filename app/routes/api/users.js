@@ -8,10 +8,18 @@ module.exports = function(app, passport) {
 
     // GET /api/users
     app.get('/api/users', isAdmin, function(req, res) {
-        // find all the users
-        User.find({}, function(err, data) {
-            // return the JSON data
-            res.json(data);
+        User
+        // find users from User
+        .find()
+        // sort users by role and alphabetically
+        .sort({'local.role': 'descending', 'local.username': 'ascending'})
+        // execute function once all shows are found and sorted
+        .exec(function(err, shows) {
+            // if there's an error, log it
+            if (err)
+                console.error(err);
+            // render user JSON datar
+            res.json(shows);
         });
     });
 
