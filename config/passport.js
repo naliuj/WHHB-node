@@ -60,13 +60,13 @@ module.exports = function(passport) {
                         // set the user's credentials
                         newUser.local.username = username;
                         newUser.local.password = newUser.generateHash(password);
-                        newUser.local.role = 1;
+                        newUser.local.role = req.body.role;
 
                         // save the user
                         newUser.save(function(err) {
                             if (err)
                                 throw err;
-                            return done(null, newUser);
+                            return done(null, false);
                         });
 
 
