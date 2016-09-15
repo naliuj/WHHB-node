@@ -31,10 +31,10 @@
             <div class="form-group">
                 <label for="role" class="sr-only">Role</label>
                 <select name="role" class="form-control col-md-4" required>
-                    <option value="1">User</option>
-                    <option value="2">Admin</option>
-                    <% if (req.user.local.role == 3) { %>
-                        <option value="3">Dev</option>
+                    <option value="0">User</option>
+                    <option value="1">Admin</option>
+                    <% if (req.user.local.role == 2) { %>
+                        <option value="2">Dev</option>
                     <% }; %>
                 </select>
             </div>
@@ -44,6 +44,8 @@
                 name="submit" value="Submit" />
             </div>
         </form>
+        <div class="table-responsive" id="table"></div>
     </div>
 </body>
+<script src="js/generateUserTable.js"></script>
 </html>

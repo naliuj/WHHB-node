@@ -47,10 +47,10 @@ function generateTable() {
 function delShow(id) {
     // reload page
     location.reload();
-    // make a post request to /api/delShow with the show ID
+    // make a post request to /api/shows with the show ID
     $.ajax({
         type: "POST",
-        url: "/api/delShow",
+        url: "/api/shows",
         data: { id: id }
     });
 };

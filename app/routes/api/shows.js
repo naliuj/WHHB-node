@@ -26,5 +26,20 @@ module.exports = function(app, passport) {
         });
     });
 
+    // =========================================================================
+    // POST /api/shows =========================================================
+    // =========================================================================
+    app.post('/api/shows', isLoggedIn, function(req, res) {
+        // assign the show id to a variable
+        var $id = req.body.id;
+        // find a show with the id and remove it
+        Show.remove({ '_id' : $id }, function(err) {
+            // if there's an error, log it to the console
+            if (err)
+                console.error(err);
+        });
+    });
+
+
 
 }
