@@ -12,8 +12,8 @@ module.exports = function(app, passport) {
         });
     });
 
-    // POST register
-    app.post('/register', isAdmin, passport.authenticate('local-signup', {
+    // POST users
+    app.post('/users', isAdmin, passport.authenticate('local-signup', {
         successRedirect: '/users',
         failureRedirect: '/users',
         failureFlash: true

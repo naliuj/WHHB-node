@@ -60,7 +60,7 @@ module.exports = function(passport) {
                         // set the user's credentials
                         newUser.local.username = username;
                         newUser.local.password = newUser.generateHash(password);
-                        newUser.local.role = 'standard';
+                        newUser.local.role = 1;
 
                         // save the user
                         newUser.save(function(err) {
@@ -68,6 +68,7 @@ module.exports = function(passport) {
                                 throw err;
                             return done(null, newUser);
                         });
+
 
                     } else {
 

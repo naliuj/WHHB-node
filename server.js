@@ -48,6 +48,7 @@ require('./app/routes/shows')(app, passport);
 // API ROUTES
 require('./app/routes/api/shows')(app, passport);
 require('./app/routes/api/delShow')(app, passport);
+require('./app/routes/api/users')(app, passport);
 
 // LAUNCH
 app.listen(port);
