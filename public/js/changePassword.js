@@ -1,9 +1,9 @@
-$("changePassword").click(function() {
+$("#changePassword").click(function() {
 
     // assign the inputs to variables
-    var $oldPass = $("#oldPassword").val();
-    var $newPass = $("#newPassword").val();
-    var $confirmNewPass = $("#confirmNewPassword").val();
+    var $oldPass = $("#oldPassword");
+    var $newPass = $("#newPassword");
+    var $confirmNewPass = $("#confirmNewPassword");
 
     // make sure that the passwords match
     if ($newPass == $confirmNewPass) {
@@ -16,8 +16,23 @@ $("changePassword").click(function() {
                 type: "POST",
                 url: "/settings",
                 data: {
-                    oldPass: $oldPass,
-                    newPass: $newPass
+                    oldPass: $oldPass.val(),
+                    newPass: $newPass.val()
+                },
+                success: function(response) {
+                    // check to see what the response from the server is
+                    if (response.status == 'done') {
+                        // if the response is 'done', alert the user that their
+                        // password changed successfully
+                        alert('Password changed successfully');
+                        $oldPass.val("");
+                        $newPass.val("");
+                        $confirmNewPass.val("");
+                    } else if (response.status == 'err') {
+                        // if the response is 'err', alert the user that it didn't work
+                        alert('Something went wrong trying to change the password.\
+                                try again later.');
+                    }
                 }
             });
 
