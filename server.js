@@ -44,6 +44,7 @@ require('./app/routes/index')(app, passport);
 require('./app/routes/login')(app, passport);
 require('./app/routes/users')(app, passport);
 require('./app/routes/shows')(app, passport);
+require('./app/routes/settings')(app, passport);
 
 // API ROUTES
 require('./app/routes/api/shows')(app, passport);
