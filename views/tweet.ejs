@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<%- include('./header.ejs') %>
+<%- include('./navbar.ejs') %>
+<div class="container">
+    <form role="form" action="/tweet" method="post">
+        <input type="text" name="tweetBody" placeholder="Tweet a message..."
+            class="form-control" maxlength="140" required><br>
+        <input type="submit" value="Submit" class="form-control btn btn-info">
+    </form>
+</div>
+</html>

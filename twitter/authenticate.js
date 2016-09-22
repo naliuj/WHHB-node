@@ -1,4 +1,4 @@
-var config = require('./config/twitter');
+var config = require('../config/twitter');
 var Twitter = require('twitter');
 
 // authenticate the app with twitter

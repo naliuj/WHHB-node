@@ -13,6 +13,9 @@ var session = require('express-session');
 
 var configDB = require('./config/database.js');
 
+// AUTHENTICATE APP WITH TWITTER
+var twitter = require('./twitter/authenticate');
+
 // CONNECT TO THE DATABASE
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url);
@@ -45,6 +48,7 @@ require('./app/routes/login')(app, passport);
 require('./app/routes/users')(app, passport);
 require('./app/routes/shows')(app, passport);
 require('./app/routes/settings')(app, passport);
+require('./app/routes/tweet')(app, passport, twitter);
 
 // API ROUTES
 require('./app/routes/api/shows')(app, passport);
